@@ -14,6 +14,8 @@ public interface ITodoList
     void RegisterProgression(int id, DateTime dateTime, decimal percent);
     // Imprime todos los items de la lista
     void PrintItems();
+    // Obtiene todos los items de la lista
+    IEnumerable<TodoItem> GetItems();
     // Verifica si hay items en la lista
     bool HasItems();
     // Verifica si existe un item con el id especificado

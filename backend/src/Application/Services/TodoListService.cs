@@ -64,6 +64,11 @@ public class TodoListService(ITodoListRepository repository) : ITodoList
         }
     }
 
+    public IEnumerable<TodoItem> GetItems()
+    {
+        return _items.OrderBy(i => i.Id.Value);
+    }
+
     public bool HasItems()
     {
         return _items.Any();

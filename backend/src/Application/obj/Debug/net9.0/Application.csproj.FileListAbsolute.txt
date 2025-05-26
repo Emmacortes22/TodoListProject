@@ -13,3 +13,4 @@ C:\Users\emmac\IT\TodoListProject\backend\src\Application\obj\Debug\net9.0\Appli
 C:\Users\emmac\IT\TodoListProject\backend\src\Application\obj\Debug\net9.0\refint\Application.dll
 C:\Users\emmac\IT\TodoListProject\backend\src\Application\obj\Debug\net9.0\Application.pdb
 C:\Users\emmac\IT\TodoListProject\backend\src\Application\obj\Debug\net9.0\ref\Application.dll
+C:\Users\emmac\IT\TodoListProject\backend\src\Application\obj\Debug\net9.0\Application.sourcelink.json

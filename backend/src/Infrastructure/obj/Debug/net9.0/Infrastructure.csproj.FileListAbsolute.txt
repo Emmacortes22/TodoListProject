@@ -15,3 +15,4 @@ C:\Users\emmac\IT\TodoListProject\backend\src\Infrastructure\obj\Debug\net9.0\In
 C:\Users\emmac\IT\TodoListProject\backend\src\Infrastructure\obj\Debug\net9.0\refint\Infrastructure.dll
 C:\Users\emmac\IT\TodoListProject\backend\src\Infrastructure\obj\Debug\net9.0\Infrastructure.pdb
 C:\Users\emmac\IT\TodoListProject\backend\src\Infrastructure\obj\Debug\net9.0\ref\Infrastructure.dll
+C:\Users\emmac\IT\TodoListProject\backend\src\Infrastructure\obj\Debug\net9.0\Infrastructure.sourcelink.json

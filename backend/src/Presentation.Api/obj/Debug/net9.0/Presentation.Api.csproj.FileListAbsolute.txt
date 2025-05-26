@@ -37,3 +37,7 @@ C:\Users\emmac\IT\TodoListProject\backend\src\Presentation.Api\obj\Debug\net9.0\
 C:\Users\emmac\IT\TodoListProject\backend\src\Presentation.Api\obj\Debug\net9.0\Presentation.Api.pdb
 C:\Users\emmac\IT\TodoListProject\backend\src\Presentation.Api\obj\Debug\net9.0\Presentation.Api.genruntimeconfig.cache
 C:\Users\emmac\IT\TodoListProject\backend\src\Presentation.Api\obj\Debug\net9.0\ref\Presentation.Api.dll
+C:\Users\emmac\IT\TodoListProject\backend\src\Presentation.Api\obj\Debug\net9.0\Presentation.Api.sourcelink.json
+C:\Users\emmac\IT\TodoListProject\backend\src\Presentation.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\emmac\IT\TodoListProject\backend\src\Presentation.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\emmac\IT\TodoListProject\backend\src\Presentation.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
