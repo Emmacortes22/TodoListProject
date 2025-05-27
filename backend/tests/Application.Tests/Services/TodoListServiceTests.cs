@@ -11,7 +11,7 @@ public class TodoListServiceTests
     public void AddItem_ShouldAdd_WhenCategoryIsValid()
     {
         // Arrange
-        _service.AddItem(0, "Test Item", "Test Description", "Work");
+        _service.AddItem(0, "Test Item", "Test Description", "Trabajo");
 
         // Assert
         Assert.True(_service.HasItems());
@@ -30,7 +30,7 @@ public class TodoListServiceTests
     public void UpdateItem_ShouldChangeDescription_WhenItemExists()
     {
         // Arrange
-        _service.AddItem(0, "Test Item", "Test Description", "Home");
+        _service.AddItem(0, "Test Item", "Test Description", "Hogar");
 
         // Act
         _service.UpdateItem(1, "New Description");
@@ -43,7 +43,7 @@ public class TodoListServiceTests
     public void UpdateItem_ShouldThrowException_WhenTotalProgressIsGreaterThan50()
     {
         // Arrange
-        _service.AddItem(0, "Test Item", "Test Description", "Study");
+        _service.AddItem(0, "Test Item", "Test Description", "Estudio");
         _service.RegisterProgression(1, DateTime.Now, 60m);
 
         // Act & Assert
@@ -56,7 +56,7 @@ public class TodoListServiceTests
     public void RemoveItem_ShouldRemoveItem_WhenTotalProgressIsLessOrEqualTo50Percent()
     {
         // Arrange
-        _service.AddItem(0, "Test Item", "Test Description", "Leisure");
+        _service.AddItem(0, "Test Item", "Test Description", "Ocio");
 
         // Act
         _service.RemoveItem(1);
@@ -69,7 +69,7 @@ public class TodoListServiceTests
     public void RemoveItem_ShouldThrowException_WhenTotalProgressIsGreaterThan50Percent()
     {
         // Arrange
-        _service.AddItem(0, "Test Item", "Test Description", "Health");
+        _service.AddItem(0, "Test Item", "Test Description", "Salud");
         _service.RegisterProgression(1, DateTime.Now, 60m);
 
         // Act & Assert
@@ -82,7 +82,7 @@ public class TodoListServiceTests
     public void RegisterProgression_ShouldAddProgression_WhenDateAndPercentAreValid()
     {
         // Arrange
-        _service.AddItem(0, "Test Item", "Test Description", "Work");
+        _service.AddItem(0, "Test Item", "Test Description", "Trabajo");
 
         // Act
         _service.RegisterProgression(1, DateTime.Now.AddDays(-1), 30m);
@@ -98,7 +98,7 @@ public class TodoListServiceTests
     public void RegisterProgression_ShouldThrowException_WhenPercentageIsInvalid()
     {
         // Arrange
-        _service.AddItem(0, "Test Item", "Test Description", "Other");
+        _service.AddItem(0, "Test Item", "Test Description", "Otro");
 
         // Act & Assert
         Assert.Throws<ArgumentException>(() =>
@@ -110,7 +110,7 @@ public class TodoListServiceTests
     public void RegisterProgression_ShouldThrowException_WhenDateIsBeforeExistingProgressions()
     {
         // Arrange
-        _service.AddItem(0, "Test Item", "Test Description", "Home");
+        _service.AddItem(0, "Test Item", "Test Description", "Hogar");
         _service.RegisterProgression(1, DateTime.Now, 10m);
 
         // Act & Assert
@@ -123,7 +123,7 @@ public class TodoListServiceTests
     public void RegisterProgression_ShouldThrowException_WhenTotalPercentExceeds100Percent()
     {
         // Arrange
-        _service.AddItem(0, "Test Item", "Test Description", "Work");
+        _service.AddItem(0, "Test Item", "Test Description", "Trabajo");
         _service.RegisterProgression(1, DateTime.Now, 60m);
 
         // Act & Assert
@@ -136,7 +136,7 @@ public class TodoListServiceTests
     public void RegisterProgression_ShouldThrowException_WhenItemIsCompleted()
     {
         // Arrange
-        _service.AddItem(0, "Test Item", "Test Description", "Work");
+        _service.AddItem(0, "Test Item", "Test Description", "Trabajo");
         _service.RegisterProgression(1, DateTime.Now, 60m);
         _service.RegisterProgression(1, DateTime.Now.AddDays(1), 40m);
 

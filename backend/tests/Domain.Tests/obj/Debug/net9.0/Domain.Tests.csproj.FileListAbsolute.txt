@@ -100,3 +100,4 @@ C:\Users\emmac\IT\TodoListProject\backend\tests\Domain.Tests\obj\Debug\net9.0\re
 C:\Users\emmac\IT\TodoListProject\backend\tests\Domain.Tests\obj\Debug\net9.0\Domain.Tests.pdb
 C:\Users\emmac\IT\TodoListProject\backend\tests\Domain.Tests\obj\Debug\net9.0\Domain.Tests.genruntimeconfig.cache
 C:\Users\emmac\IT\TodoListProject\backend\tests\Domain.Tests\obj\Debug\net9.0\ref\Domain.Tests.dll
+C:\Users\emmac\IT\TodoListProject\backend\tests\Domain.Tests\obj\Debug\net9.0\Domain.Tests.sourcelink.json

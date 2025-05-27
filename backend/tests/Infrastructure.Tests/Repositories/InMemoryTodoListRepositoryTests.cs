@@ -31,11 +31,11 @@ public class InMemoryTodoListRepositoryTests
 
         // Assert
         Assert.Equal(6, categories.Count);
-        Assert.Contains("Work", categories);
-        Assert.Contains("Home", categories);
-        Assert.Contains("Health", categories);
-        Assert.Contains("Study", categories);
-        Assert.Contains("Leisure", categories);
-        Assert.Contains("Other", categories);
+        Assert.Contains("Trabajo", categories);
+        Assert.Contains("Hogar", categories);
+        Assert.Contains("Salud", categories);
+        Assert.Contains("Estudio", categories);
+        Assert.Contains("Ocio", categories);
+        Assert.Contains("Otro", categories);
     }
 }

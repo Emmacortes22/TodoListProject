@@ -17,7 +17,7 @@ namespace Application.Tests.Integration
             // Arrange
             var title = "Estudiar C#";
             var description = "Repasar patrones de diseño";
-            var category = "Study";
+            var category = "Estudio";
 
             // Act
             _todoList.AddItem(0, title, description, category);
@@ -30,7 +30,7 @@ namespace Application.Tests.Integration
         public void RegisterProgression_ShouldAddProgress_WhenDateAndPercentAreValid()
         {
             // Arrange
-            _todoList.AddItem(0, "Limpiar cocina", "Tarea doméstica", "Home");
+            _todoList.AddItem(0, "Limpiar cocina", "Tarea doméstica", "Hogar");
 
             // Act
             _todoList.RegisterProgression(1, DateTime.Now, 30m);
@@ -43,7 +43,7 @@ namespace Application.Tests.Integration
         public void UpdateItem_ShouldThrowException_WhenTotalProgressIsGreaterThan50Percent()
         {
             // Arrange
-            _todoList.AddItem(0, "Proyecto", "Trabajo final", "Work");
+            _todoList.AddItem(0, "Proyecto", "Trabajo final", "Trabajo");
             _todoList.RegisterProgression(1, DateTime.Now, 60m);
 
             // Act & Assert
@@ -56,7 +56,7 @@ namespace Application.Tests.Integration
         public void RemoveItem_ShouldThrowException_WhenTotalProgressIsGreaterThan50Percent()
         {
             // Arrange
-            _todoList.AddItem(0, "Curso Online", "Completar curso", "Study");
+            _todoList.AddItem(0, "Curso Online", "Completar curso", "Estudio");
             _todoList.RegisterProgression(1, DateTime.Now, 70m);
 
             // Act & Assert
@@ -69,7 +69,7 @@ namespace Application.Tests.Integration
         public void ValidateProgressionDate_ShouldThrowException_WhenDateIsBeforeExistingProgressions()
         {
             // Arrange
-            _todoList.AddItem(0, "Leer libro", "Capítulo 1", "Leisure");
+            _todoList.AddItem(0, "Leer libro", "Capítulo 1", "Ocio");
             _todoList.RegisterProgression(1, DateTime.Now, 10m);
 
             // Act & Assert

@@ -78,6 +78,7 @@ public class TodoListController(ITodoList todoList, ITodoListRepository reposito
         try
         {
             var items = _todoList.GetItems()
+                .AsEnumerable()
                 .Select(item => new TodoItemDto
                 {
                     Id = item.Id.Value,

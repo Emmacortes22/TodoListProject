@@ -1,8 +1,9 @@
 using Application.Interfaces;
 using Application.Interfaces.Persistence;
 using Infrastructure.Repositories;
-using Application.Services;
 using Microsoft.AspNetCore.Diagnostics;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +15,6 @@ if (builder.Environment.IsDevelopment())
     builder.Services.AddSwaggerGen();
 }
 
-builder.Services.AddSingleton<ITodoListRepository, InMemoryTodoListRepository>();
-builder.Services.AddSingleton<ITodoList, TodoListService>();
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowVueFrontend",
@@ -25,6 +23,12 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowAnyHeader());
 });
+
+builder.Services.AddDbContext<TodoListDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<ITodoListRepository, SqlTodoListRepository>();
+builder.Services.AddScoped<ITodoList, SqlTodoListService>();
 
 var app = builder.Build();
 
