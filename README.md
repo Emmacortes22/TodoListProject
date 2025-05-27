@@ -89,25 +89,35 @@ TodoListProject/
 - Docker  
 - Node.js y npm (para el frontend)
 
-### Consola
+### OPCIÓN 1: Consola
 
 Ejecuta la aplicación consola (modo en memoria):
 ```bash
 dotnet run --project Presentation.Console
 ```
 
-### Backend + SQL Server
+### OPCIÓN 2: Backend + SQL Server
 
 Inicia el contenedor Docker:
 ```bash
-docker compose up -d
+docker-compose up -d
+```
+
+Tener instalada la herramienta de EF Core globalmente, si no se tiene:
+```bash
+dotnet tool install --global dotnet-ef
+```
+Navega a la carpeta del backend:
+```bash
+cd backend
 ```
 
 Aplica las migraciones y ejecuta la API:
 ```bash
-dotnet ef database update --project Infrastructure
-dotnet run --project Presentation.Api
+dotnet ef database update --project src/Infrastructure --startup-project src/Presentation.Api
+dotnet run --project src/Presentation.Api
 ```
+http://localhost:5046/swagger/index.html
 
 ### Frontend
 
@@ -121,6 +131,7 @@ Instala dependencias y ejecuta el frontend:
 npm install
 npm run dev
 ```
+http://localhost:5173/
 
 ---
 
