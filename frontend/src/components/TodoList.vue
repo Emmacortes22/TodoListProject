@@ -120,11 +120,19 @@ async function fetchItems(): Promise<void> {
 }
 
 async function addItem(): Promise<void> {
+    const title = newItem.value.title.trim();
+    const description = newItem.value.description.trim();
+
+    if (!title || !description) {
+        alert('Todos los campos son obligatorios y no pueden estar vacíos.');
+        return;
+    }
+    
     try {
         await todoListApi.addItem({
             id: 0,
-            title: newItem.value.title,
-            description: newItem.value.description,
+            title: title,
+            description: description,
             category: newItem.value.category,
         });
 
