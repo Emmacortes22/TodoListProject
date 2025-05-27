@@ -85,9 +85,16 @@ TodoListProject/
 ## Puesta en marcha
 
 ### Requisitos
-- .NET 8 SDK  
+- .NET 9 SDK  
 - Docker  
 - Node.js y npm (para el frontend)
+
+### Consola
+
+Ejecuta la aplicación consola (modo en memoria):
+```bash
+dotnet run --project Presentation.Console
+```
 
 ### Backend + SQL Server
 
@@ -98,8 +105,8 @@ docker compose up -d
 
 Aplica las migraciones y ejecuta la API:
 ```bash
-dotnet ef database update --project .\backend\src\Infrastructure\
-dotnet run --project .\backend\src\Presentation.Api\
+dotnet ef database update --project Infrastructure
+dotnet run --project Presentation.Api
 ```
 
 ### Frontend
@@ -113,13 +120,6 @@ Instala dependencias y ejecuta el frontend:
 ```bash
 npm install
 npm run dev
-```
-
-### Consola
-
-Ejecuta la aplicación consola (modo en memoria):
-```bash
-dotnet run --project .\backend\src\Presentation.Console\
 ```
 
 ---
@@ -141,7 +141,6 @@ dotnet run --project .\backend\src\Presentation.Console\
 - Diseño basado en Domain-Driven Design (DDD).
 - Uso de Value Object `TodoItemId` para validaciones fuertes.
 - Control de estado y progreso de cada tarea con la entidad `Progression`.
-- Validaciones de dominio, como no permitir actualización si el progreso supera el 50%.
 - Uso de Entity Framework Core con conversiones personalizadas para el modelo.
 
 ---
