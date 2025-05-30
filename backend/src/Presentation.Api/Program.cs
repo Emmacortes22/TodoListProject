@@ -25,7 +25,10 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddDbContext<TodoListDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions => sqlOptions.EnableRetryOnFailure()
+    ));
 
 builder.Services.AddScoped<ITodoListRepository, SqlTodoListRepository>();
 builder.Services.AddScoped<ITodoList, SqlTodoListService>();

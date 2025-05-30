@@ -1,4 +1,5 @@
 <template>
+    <ErrorBanner v-if="errorMessage" :message="errorMessage" @close="clearError" />
     <div class="container">
         <h1 class="title">Aplicación Todo List</h1>
         <div class="cards-wrapper">
@@ -54,7 +55,7 @@
                         
                         <div class="actions">
                             <button @click="showUpdateForm(item)" :disabled="item.isCompleted" class="btn btn-secondary">Actualizar</button>
-                            <button @click="deleteItem(item.id)" :disabled="item.isCompleted" class="btn btn-danger">Eliminar</button>
+                            <button @click="requestDelete(item.id)" class="btn btn-danger">Eliminar</button>
                             <button @click="showAddProgression(item.id)" class="btn btn-primary">Agregar Progreso</button>
                         </div>
                         
@@ -76,12 +77,20 @@
         </div>
         
     </div>
+    <ConfirmDialog
+        :visible="showConfirm"
+        message="¿Estás seguro de que quieres eliminar esta tarea?"
+        @confirm="confirmDelete"
+        @cancel="cancelDelete"
+    />
 </template>
   
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
 import type { TodoItem, Progression } from '../api/types';
 import todoListApi from '../api/todoListApi';
+import ErrorBanner from './ErrorBanner.vue';
+import ConfirmDialog from './ConfirmDialog.vue';
 
 const items = ref<TodoItem[]>([]);
 const loading = ref<boolean>(true);
@@ -101,6 +110,9 @@ const newProgression = ref<Progression>({
     date: new Date().toISOString().slice(0, 10),
     percent: 10
 });
+const errorMessage = ref<string>('');
+const showConfirm = ref(false);
+const idToDelete = ref<number | null>(null);
 
 onMounted(async (): Promise<void> => {
     await fetchItems();
@@ -113,8 +125,7 @@ async function fetchItems(): Promise<void> {
         const response = await todoListApi.getItems();
         items.value = response.data;
     } catch (error) {
-        console.error('Error al obtener las tareas:', error);
-        alert('Error al cargar las tareas');
+        showError('Error al cargar las tareas');
     } finally {
         loading.value = false;
     }
@@ -125,7 +136,7 @@ async function fetchCategories(): Promise<void> {
     const response = await todoListApi.getCategories();
     categories.value = response.data;
   } catch (error) {
-    alert("Error al cargar las categorías");
+    showError("Error al cargar las categorías");
   }
 }
 
@@ -134,7 +145,7 @@ async function addItem(): Promise<void> {
     const description = newItem.value.description.trim();
 
     if (!title || !description) {
-        alert('Todos los campos son obligatorios y no pueden estar vacíos.');
+        showError('Todos los campos son obligatorios y no pueden estar vacíos.');
         return;
     }
     
@@ -152,8 +163,7 @@ async function addItem(): Promise<void> {
         
         await fetchItems();
     } catch (error) {
-        console.error('Error al agregar la tarea:', error);
-        alert((error as any).response?.data || (error as Error).message);
+        showError((error as any).response?.data || (error as Error).message);
     }
 }
 
@@ -172,21 +182,22 @@ async function updateItem(id: number): Promise<void> {
         itemToUpdate.value = null;
         await fetchItems();
     } catch (error) {
-        console.error('Error al actualizar la tarea:', error);
-        alert((error as any).response?.data || (error as Error).message);
+        showError((error as any).response?.data || (error as Error).message);
     }
 }
 
-async function deleteItem(id: number): Promise<void> {
-    if (!confirm('¿Estás seguro de querer eliminar esta tarea?')) return;
-
+async function confirmDelete(): Promise<void> {
+  if (idToDelete.value !== null) {
     try {
-        await todoListApi.deleteItem(id);
-        await fetchItems();
+      await todoListApi.deleteItem(idToDelete.value);
+      await fetchItems();
     } catch (error) {
-        console.error('Error al eliminar la tarea:', error);
-        alert((error as any).response?.data || (error as Error).message);
+      showError((error as any).response?.data || (error as Error).message);
+    } finally {
+      idToDelete.value = null;
+      showConfirm.value = false;
     }
+  }
 }
 
 function showAddProgression(id: number): void {
@@ -210,8 +221,7 @@ async function addProgression(id: number): Promise<void> {
         itemToAddProgression.value = null;
         await fetchItems();
     } catch (error) {
-        console.error('Error al agregar el progreso:', error);
-        alert((error as any).response?.data || (error as Error).message);
+        showError((error as any).response?.data || (error as Error).message);
     }
 }
 
@@ -235,6 +245,24 @@ function formatDateTime(dateString: string): string {
     second: '2-digit',
     hour12: true
   });
+}
+
+function showError(message: string) {
+  errorMessage.value = message;
+}
+
+function clearError() {
+  errorMessage.value = '';
+}
+
+function requestDelete(id: number): void {
+  idToDelete.value = id;
+  showConfirm.value = true;
+}
+
+function cancelDelete(): void {
+  showConfirm.value = false;
+  idToDelete.value = null;
 }
 </script>
   
