@@ -101,6 +101,13 @@ public class TodoListController(ITodoList todoList, ITodoListRepository reposito
         }
     }
 
+    [HttpGet("categories")]
+    public IActionResult GetCategories()
+    {
+        var categories = Enum.GetNames<TodoItem.Category>();
+        return Ok(categories);
+    }
+
     public record AddItemRequest(int Id, string Title, string Description, string Category);
     public record UpdateItemRequest(string Description);
     public record RegisterProgressionRequest(DateTime DateTime, decimal Percent);

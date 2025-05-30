@@ -6,20 +6,20 @@
                 <h2 class="card-title">Agregar Nueva Tarea</h2>
                 <form @submit.prevent="addItem">
                     <div class="form-group">
-                    <label>Título:</label>
-                    <input v-model="newItem.title" required>
+                        <label>Título:</label>
+                        <input v-model="newItem.title" required>
                     </div>
                     <div class="form-group">
-                    <label>Descripción:</label>
-                    <textarea v-model="newItem.description" required></textarea>
+                        <label>Descripción:</label>
+                        <textarea v-model="newItem.description" required></textarea>
                     </div>
                     <div class="form-group">
-                    <label>Categoría:</label>
-                    <select v-model="newItem.category" required>
-                        <option v-for="category in categories" :key="category" :value="category">
-                        {{ category }}
-                        </option>
-                    </select>
+                        <label>Categoría:</label>
+                        <select v-model="newItem.category" required>
+                            <option v-for="category in categories" :key="category" :value="category">
+                                {{ category }}
+                            </option>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Agregar Tarea</button>
                 </form>
@@ -85,7 +85,7 @@ import todoListApi from '../api/todoListApi';
 
 const items = ref<TodoItem[]>([]);
 const loading = ref<boolean>(true);
-const categories = ref<string[]>(['Trabajo', 'Hogar', 'Salud', 'Estudio', 'Ocio', 'Otro']);
+const categories = ref<string[]>([]);
 const newItem = ref<TodoItem>({
     id: 0,
     title: '',
@@ -104,6 +104,7 @@ const newProgression = ref<Progression>({
 
 onMounted(async (): Promise<void> => {
     await fetchItems();
+    await fetchCategories();
 });
 
 async function fetchItems(): Promise<void> {
@@ -117,6 +118,15 @@ async function fetchItems(): Promise<void> {
     } finally {
         loading.value = false;
     }
+}
+
+async function fetchCategories(): Promise<void> {
+  try {
+    const response = await todoListApi.getCategories();
+    categories.value = response.data;
+  } catch (error) {
+    alert("Error al cargar las categorías");
+  }
 }
 
 async function addItem(): Promise<void> {

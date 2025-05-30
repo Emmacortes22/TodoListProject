@@ -30,6 +30,9 @@ export default {
   getItems(): Promise<AxiosResponse<TodoItem[]>> {
     return apiClient.get('/');
   },
+  getCategories(): Promise<AxiosResponse<string[]>> {
+    return apiClient.get('/categories');
+  },
   addItem(item: AddItemRequest): Promise<AxiosResponse<void>> {
     return apiClient.post('/', item);
   },
