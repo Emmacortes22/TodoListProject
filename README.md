@@ -144,6 +144,7 @@ http://localhost:5173/
 | PUT    | /todo-list/{id}                   | Actualiza la descripción                |
 | DELETE | /todo-list/{id}                   | Elimina una tarea                       |
 | POST   | /todo-list/{id}/progressions      | Crea una nueva progression para la tarea|
+| GET    | /todo-list/categories             | Obtiene todas las categorias            |
 
 ---
 
