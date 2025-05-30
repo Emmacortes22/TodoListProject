@@ -70,7 +70,9 @@ TodoListProject/
 │   │   │   ├── todoListApi.ts
 │   │   │   └── types.ts                  # Tipos TypeScript para datos
 │   │   ├── components/                   # Componentes Vue reutilizables
-│   │   │   └── TodoList.vue
+│   │   │   ├── TodoList.vue
+│   │   │   ├── ConfirmDialog.vue
+│   │   │   └── ErrorBanner.vue
 │   │   ├── App.vue                       # Componente raíz
 │   │   └── style.css                     # Estilos globales
 │   └── .env                             # Variables entorno para frontend
